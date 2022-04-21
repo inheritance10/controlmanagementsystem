@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\DefaultController;
+use App\Http\Controllers\SettingsController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Backend\DefaultController;
-use App\Http\Controllers\Backend\SettingsController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,10 +19,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
 Route::get('admin',[DefaultController::class,'index'])
     ->name('admin.index');
 
 
 Route::get('admin/settings',[SettingsController::class,'index'])
     ->name('settings.index');
+
+
+
+
 
