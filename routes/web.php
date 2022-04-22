@@ -34,6 +34,11 @@ Route::post('admin/sortable',[SettingsController::class,'sortable'])
 
 Route::get('admin/settings/delete/{id}',[SettingsController::class,'Destroy']);
 
+Route::get('admin/settings/edit/{id}',[SettingsController::class,'edit'])
+    ->name('settings.edit');
+
+Route::post('admin/update/{id}',[SettingsController::class,'update'])
+    ->name('settings.update');
 
 
 

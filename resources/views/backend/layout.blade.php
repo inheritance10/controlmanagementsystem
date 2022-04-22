@@ -45,6 +45,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Bootstrap theme -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
 
+    <script src="https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -244,6 +245,12 @@ desired effect
         alertify.error('{{session('error')}}')
     </script>
 @endif
+
+@foreach($errors->all() as $error)
+    <script>
+        alertify.error('{{$error}}')
+    </script>
+@endforeach
 
 </body>
 </html>

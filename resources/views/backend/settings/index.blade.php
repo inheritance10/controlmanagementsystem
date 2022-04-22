@@ -27,7 +27,7 @@
                         <td>{{$adminSettings->settings_value}}</td>
                         <td>{{$adminSettings->settings_key}}</td>
                         <td>{{$adminSettings->settings_type}}</td>
-                        <td width="5"><a href="javascrip:void(0)"><i class="fa fa-pencil-square"></i></a></td>
+                        <td width="5"><a href="{{route('settings.edit',['id' => $adminSettings->id])}}"><i class="fa fa-pencil-square"></i></a></td>
                         <td width="5">
                             @if($adminSettings->settings_delete == 1)
                                 <a href="javascrip:void(0)"><i id="@php echo $adminSettings->id @endphp" class="fa fa-trash-o"></i></a>
