@@ -231,5 +231,19 @@ desired effect
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
+
+
+@if(session()->has('success'))
+    <script>
+        alertify.success('{{session('success')}}')
+    </script>
+@endif
+
+@if(session()->has('error'))
+    <script>
+        alertify.error('{{session('error')}}')
+    </script>
+@endif
+
 </body>
 </html>

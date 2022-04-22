@@ -30,7 +30,7 @@
                         <td width="5"><a href="javascrip:void(0)"><i class="fa fa-pencil-square"></i></a></td>
                         <td width="5">
                             @if($adminSettings->settings_delete == 1)
-                                <a href=""><i class="fa fa-trash-o"></i></a>
+                                <a href="javascrip:void(0)"><i id="@php echo $adminSettings->id @endphp" class="fa fa-trash-o"></i></a>
                             @endif
                         </td>
                     </tr>
@@ -73,7 +73,20 @@
                 }
             });
             $('#sortable').disableSelection();
-        });
+        });//sortable işlemi ajax jquery
+
+
+        $('.fa-trash-o').click(function (){
+            destroy_id = $(this).attr('id');
+            alertify.confirm('Silme işlemini onaylayın!','Bu işlem geri alınamaz',
+                function (){
+                    location.href = "/admin/settings/delete/" + destroy_id;
+                },
+                function (){
+                    alertify.error('Silme işlemi iptal edildi');
+                }
+            )
+        })
     </script>
 
 

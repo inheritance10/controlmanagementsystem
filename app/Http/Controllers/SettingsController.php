@@ -21,9 +21,16 @@ class SettingsController extends Controller
         echo true;
     }
 
-    public function SettingsDelete($id){
-        /*$settings = Settings::find($id);
-        $settings->delete();*/
+    public function Destroy($id){
+
+        $settings = Settings::find($id);
+        if($settings->delete()){
+            return back()->with('success','Silinme işlemi başarılı');
+        }
+
+        return back()->with('error','Silme işlemi başarısız');
+
+
 
 
     }
