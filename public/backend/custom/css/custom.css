@@ -1,0 +1,4 @@
+.sortable:hover{
+    cursor: -webkit-grab;
+    cursor: pointer;
+}

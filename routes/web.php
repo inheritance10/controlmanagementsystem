@@ -24,8 +24,16 @@ Route::get('admin',[DefaultController::class,'index'])
     ->name('admin.index');
 
 
+
+
 Route::get('admin/settings',[SettingsController::class,'index'])
     ->name('settings.index');
+
+Route::post('admin/sortable',[SettingsController::class,'sortable'])
+    ->name('settings.Sortable');
+
+/*Route::get('admin/settings-delete/{id}',[SettingsController::class,'SettingsDelete'])
+    ->name('settings.delete');*/
 
 
 
