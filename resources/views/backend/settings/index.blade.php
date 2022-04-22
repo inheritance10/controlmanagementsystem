@@ -24,7 +24,13 @@
                     <tr id="item-{{$adminSettings->id}}">
                         <td>{{$adminSettings->id}}</td>
                         <td class="sortable">{{$adminSettings['settings_description']}}</td>
-                        <td>{{$adminSettings->settings_value}}</td>
+                        <td>
+                            @if($adminSettings->settings_type == 'file')
+                                <img src="/images/settings/{{$adminSettings->settings_value}}" width="100px;" alt="">
+                            @else
+                                {{$adminSettings->settings_value}}
+                            @endif
+                        </td>
                         <td>{{$adminSettings->settings_key}}</td>
                         <td>{{$adminSettings->settings_type}}</td>
                         <td width="5"><a href="{{route('settings.edit',['id' => $adminSettings->id])}}"><i class="fa fa-pencil-square"></i></a></td>

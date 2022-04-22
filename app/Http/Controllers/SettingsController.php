@@ -43,12 +43,25 @@ class SettingsController extends Controller
             $request->validate([
                'settings_value' => 'required|image|mimes:jpg,jpeg,png|max:2048'
             ]);
+
+            $file_name = uniqid().".".$request->settings_value->getClientOriginalExtension();
+            //direkt olarak gelen dosyanın uzantısını alıyor getClientOriginalExtension()
+            //uniqid() 13 karakterlik benzersiz bir isim
+            $request->settings_value->move(public_path('images/settings'),$file_name);
+            $request->settings_value = $file_name;
         }
 
         $settings = Settings::where('id',$id)->update([
             'settings_value' => $request->settings_value
         ]);
+
         if($settings){
+            //önce resmin yolunu çekeriz
+            //sonra file_exists metodu ile resim o yolda mevcutmu diye kontrol sağlarız.
+            $path = 'images/settings/'.$request->old_file;//burada resim güncellendikten sonra önceki resim var ise o resmin silinmesini sağlar.
+            if(file_exists($path)){
+                @unlink(public_path($path));//unlink silmeyi sağlar
+            }
             return back()->with('success','Düzenleme işlemi başarılı');
         }
         return back()->with('error','Düzenleme işlemi başarısız');

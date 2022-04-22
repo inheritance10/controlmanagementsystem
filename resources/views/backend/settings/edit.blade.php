@@ -44,11 +44,19 @@
                                         @if($settings->settings_type == 'ckeditor')
                                             <textarea class="form-control" id="editor1" name="settings_value" {{$settings->settings_value}}></textarea>
                                         @endif
+                                            @if($settings->settings_type == 'file')
+                                                <img src="/images/settings/{{$settings->settings_value}}" width="100px;" alt="">
+                                            @endif
                                             <script>
                                                 CKEDITOR.replace('editor1')
                                             </script>
                                 </div>
                             </div>
+                            @if($settings->settings_type == 'file')
+                                <input type="hidden" name="old_file" value="{{$settings->settings_value}}">
+                            @endif
+
+
                             <div align="right">
                                 <button type="submit" class="btn btn-success">Düzenle</button>
                             </div>

@@ -20,25 +20,30 @@ Route::get('/', function () {
 
 
 
-Route::get('admin',[DefaultController::class,'index'])
-    ->name('admin.index');
+Route::prefix('admin')->group(function () {
+    Route::get('/',[DefaultController::class,'index'])
+        ->name('admin.index');
+
+
+    Route::get('/settings',[SettingsController::class,'index'])
+        ->name('settings.index');
+
+    Route::post('/sortable',[SettingsController::class,'sortable'])
+        ->name('settings.Sortable');
+
+    Route::get('/settings/delete/{id}',[SettingsController::class,'Destroy']);
+
+    Route::get('/settings/edit/{id}',[SettingsController::class,'edit'])
+        ->name('settings.edit');
+
+    Route::post('/update/{id}',[SettingsController::class,'update'])
+        ->name('settings.update');
+
+});
 
 
 
 
-Route::get('admin/settings',[SettingsController::class,'index'])
-    ->name('settings.index');
-
-Route::post('admin/sortable',[SettingsController::class,'sortable'])
-    ->name('settings.Sortable');
-
-Route::get('admin/settings/delete/{id}',[SettingsController::class,'Destroy']);
-
-Route::get('admin/settings/edit/{id}',[SettingsController::class,'edit'])
-    ->name('settings.edit');
-
-Route::post('admin/update/{id}',[SettingsController::class,'update'])
-    ->name('settings.update');
 
 
 
