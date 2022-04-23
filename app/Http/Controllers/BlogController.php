@@ -34,7 +34,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-
+         return view('backend.blogs.create');
     }
 
     /**
@@ -45,7 +45,7 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
     }
 
     /**

@@ -5,6 +5,13 @@
         <div class="box box-primary">
             <div class="box-header with-border">
                 <h3 class="box-title">Blogs</h3>
+                <div align="right">
+                    <a href="{{route('blog.create')}}">
+                        <button class="btn btn-success">
+                               Ekle
+                        </button>
+                    </a>
+                </div>
             </div>
             <div class="box-body">
                 <table class="table table-striped">
