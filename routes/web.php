@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\DefaultController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,7 +43,9 @@ Route::prefix('admin')->group(function () {
 });
 
 
-
+Route::prefix('admin')->group(function (){
+    Route::resource('blog',BlogController::class);
+});
 
 
 
