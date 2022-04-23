@@ -49,7 +49,7 @@
                     $.ajax({
                         type: "POST",
                         data: data,
-                        url: "{{route('settings.Sortable')}}",
+                        url: "{{route('blog.Sortable')}}",
                         success: function (msg) {
                             //console.log(msg);
                             if (msg) {
@@ -59,7 +59,6 @@
                             }
                         }
                     });
-
                 }
             });
             $('#sortable').disableSelection();
@@ -70,7 +69,18 @@
             destroy_id = $(this).attr('id');
             alertify.confirm('Silme işlemini onaylayın!','Bu işlem geri alınamaz',
                 function (){
-                    location.href = "/admin/settings/delete/" + destroy_id;
+                    $.ajax({
+                        type:'DELETE',
+                        url: 'blog/'+destroy_id,
+                        success:function (msg){
+                            if(msg){
+                                $('#item-'+destroy_id).remove();//veri silindiğinde ekrandanda syafayı yenilemeden kaldırılmasını sağlar
+                                alertify.success('Silme işlemi başarılı');
+                            }else{
+                                alertify.error('İşlem tamamlanamadı');
+                            }
+                        }
+                    });
                 },
                 function (){
                     alertify.error('Silme işlemi iptal edildi');

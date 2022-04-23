@@ -11,6 +11,17 @@ class BlogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function sortable(){
+        //print_r($_POST['item']);
+        foreach ($_POST['item'] as $key => $value){
+            $blog = Blogs::find(intval($value));//ajax üzerinden veri string geliyor.find ise integer ile çalışıyor.
+            $blog->blog_must = intval($key);
+            $blog->save();
+        }
+        echo true;
+    }
+
     public function index()
     {
         $data['blog'] = Blogs::all()->sortBy('blog_must');
@@ -79,6 +90,10 @@ class BlogController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $blog = Blogs::find(intval($id));
+        if($blog->delete()){
+            echo 1;
+        }
+        echo 0;
     }
 }

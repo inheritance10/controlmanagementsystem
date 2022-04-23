@@ -45,6 +45,8 @@ Route::prefix('admin')->group(function () {
 
 Route::prefix('admin')->group(function (){
     Route::resource('blog',BlogController::class);
+    Route::post('blog/sortable',[BlogController::class,'sortable'])
+        ->name('blog.Sortable');
 });
 
 
