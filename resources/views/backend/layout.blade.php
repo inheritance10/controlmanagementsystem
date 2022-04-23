@@ -172,7 +172,6 @@ desired effect
                 <li class="active"><a href="{{route('admin.index')}}"><i class="fa fa-link"></i> <span>Anasayfa</span></a></li>
                 <li class="active"><a href="{{route('settings.index')}}"><i class="fa fa-cog"></i> <span>Ayarlar</span></a></li>
 
-
                {{-- <li class="treeview">
                     <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
                         <span class="pull-right-container">

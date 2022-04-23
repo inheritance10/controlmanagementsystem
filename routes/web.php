@@ -39,8 +39,8 @@ Route::prefix('admin')->group(function () {
 
     Route::post('/update/{id}',[SettingsController::class,'update'])
         ->name('settings.update');
-
 });
+
 
 
 Route::prefix('admin')->group(function (){
