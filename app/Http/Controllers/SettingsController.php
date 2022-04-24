@@ -61,7 +61,7 @@ class SettingsController extends Controller
             if(file_exists($path)){
                 @unlink(public_path($path));//unlink silmeyi sağlar
             }
-            return back()->with('success','Düzenleme işlemi başarılı');
+            return redirect(route('settings.index'))->with('success','Düzenleme işlemi başarılı');
         }
         return back()->with('error','Düzenleme işlemi başarısız');
     }

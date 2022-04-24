@@ -97,7 +97,8 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
-        //
+        $blog = Blogs::where('id',$id)->first();
+        return view('backend.blogs.edit')->with('blog',$blog);
     }
 
     /**
@@ -109,7 +110,49 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if(strlen($request->blog_slug)>3){
+            $slug = Str::slug($request->blog_slug);
+        }else{
+            $slug = Str::slug($request->blog_title);
+        }
+
+        if($request->hasFile('blog_file')){
+            $request->validate([
+               'blog_file' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+                'blog_title' => 'required',
+                'blog_content' => 'required'
+            ]);
+            $file_name = uniqid().'.'.$request->blog_file->getClientOriginalExtension();
+            $request->blog_file->move(public_path('/images/blogs'),$file_name);
+
+            $blog = Blogs::where('id',$id)->update([
+                'blog_title' => $request->blog_title,
+                'blog_slug' => $slug,
+                'blog_content' => $request->blog_content,
+                'blog_status' => $request->blog_status,
+                'blog_file' => $file_name
+            ]);
+
+            //önce resmin yolunu çekeriz
+            //sonra file_exists metodu ile resim o yolda mevcutmu diye kontrol sağlarız.
+            $path = 'images/blogs/'.$request->old_file;//burada resim güncellendikten sonra önceki resim var ise o resmin silinmesini sağlar.
+            if(file_exists($path)){
+                @unlink(public_path($path));//unlink silmeyi sağlar
+            }
+        }
+        else{
+            $blog = Blogs::where('id',$id)->update([
+                'blog_title' => $request->blog_title,
+                'blog_slug' => $slug,
+                'blog_content' => $request->blog_content,
+                'blog_status' => $request->blog_status
+            ]);
+        }
+
+        if($blog){
+            return redirect(route('blog.index'))->with('success','Düzenleme işlemi başarılı');
+        }
+        return back()->with('error','Düzenleme işlemi başarısız');
     }
 
     /**
