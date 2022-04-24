@@ -52,7 +52,7 @@
                         </div>
 
                             <div class="form-group">
-                                <label>İçerik</label>
+                                <label>Status</label>
                                 <div class="row">
                                     <div class="col-xs-12">
                                         <select name="blog_status" class="form-control" id="">

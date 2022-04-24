@@ -43,7 +43,6 @@ class SettingsController extends Controller
             $request->validate([
                'settings_value' => 'required|image|mimes:jpg,jpeg,png|max:2048'
             ]);
-
             $file_name = uniqid().".".$request->settings_value->getClientOriginalExtension();
             //direkt olarak gelen dosyanın uzantısını alıyor getClientOriginalExtension()
             //uniqid() 13 karakterlik benzersiz bir isim

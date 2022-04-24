@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Blogs;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Str;
 class BlogController extends Controller
 {
     /**
@@ -45,7 +45,37 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        if(strlen($request->blog_slug)>3){
+            $slug = Str::slug($request->blog_slug);
+        }else{
+            $slug = Str::slug($request->blog_title);
+        }
+
+        if($request->hasFile('blog_file')){
+            $request->validate([
+                'blog_title' => 'required',
+               'blog_content' => 'required',
+               'blog_file' => 'required|image|mimes:jpg,jpeg,png|max:2048'
+            ]);
+            $file_name = uniqid().".".$request->blog_file->getClientOriginalExtension();
+            $request->blog_file->move(public_path('images/blogs'),$file_name);
+        }else{
+            $file_name = null;
+        }
+
+        $blog = Blogs::create([
+           'blog_title' => $request->blog_title,
+           'blog_slug' => $slug,
+           'blog_content' => $request->blog_content,
+           'blog_status' => $request->blog_status,
+            'blog_file' => $file_name
+        ]);
+
+
+        if($blog){
+            return redirect(route('blog.index'))->with('success','Kayıt işlemi başarılı');
+        }
+        return back()->with('error','Kayıt işlemi başarısız');
     }
 
     /**
