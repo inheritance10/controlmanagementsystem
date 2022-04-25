@@ -3,7 +3,7 @@ use App\Http\Controllers\DefaultController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PageController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,9 +44,19 @@ Route::prefix('admin')->group(function () {
 
 
 Route::prefix('admin')->group(function (){
+    //blog modülü
     Route::resource('blog',BlogController::class);
+
     Route::post('blog/sortable',[BlogController::class,'sortable'])
         ->name('blog.Sortable');
+
+
+    //Page modülü
+
+    Route::resource('page',PageController::class);
+
+    Route::post('page/sortable',[PageController::class,'sortable'])
+        ->name('page.Sortable');
 });
 
 
