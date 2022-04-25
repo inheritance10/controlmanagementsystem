@@ -4,6 +4,7 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\SliderController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -57,6 +58,13 @@ Route::prefix('admin')->group(function (){
 
     Route::post('page/sortable',[PageController::class,'sortable'])
         ->name('page.Sortable');
+
+    //Slider modülü
+
+    Route::resource('slider',SliderController::class);
+
+    Route::post('slider/sortable',[SliderController::class,'sortable'])
+        ->name('slider.Sortable');
 });
 
 

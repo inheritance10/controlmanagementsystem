@@ -170,9 +170,10 @@ desired effect
                 <li class="header">MENÜLER</li>
                 <!-- Optionally, you can add icons to the links -->
                 <li class="active"><a href="{{route('admin.index')}}"><i class="fa fa-link"></i> <span>Anasayfa</span></a></li>
-                <li class="active"><a href="{{route('settings.index')}}"><i class="fa fa-cog"></i> <span>Ayarlar</span></a></li>
                 <li class="active"><a href="{{route('blog.index')}}"><i class="fa fa-paper-plane"></i> <span>Blog</span></a></li>
                 <li class="active"><a href="{{route('page.index')}}"><i class="fa fa-paper-plane"></i> <span>Page</span></a></li>
+                <li class="active"><a href="{{route('slider.index')}}"><i class="fa fa-paper-plane"></i> <span>Slider</span></a></li>
+                <li class="active"><a href="{{route('settings.index')}}"><i class="fa fa-cog"></i> <span>Ayarlar</span></a></li>
 
                {{-- <li class="treeview">
                     <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
