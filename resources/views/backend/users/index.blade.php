@@ -4,9 +4,9 @@
     <section class="content-header">
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">Sliders</h3>
+                <h3 class="box-title">User</h3>
                 <div align="right">
-                    <a href="{{route('slider.create')}}">
+                    <a href="{{route('user.create')}}">
                         <button class="btn btn-success">
                                Ekle
                         </button>
@@ -17,18 +17,22 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>Başlık</th>
+                        <th>Görsel</th>
+                        <th>Ad Soyad</th>
                         <th></th>
                         <th></th>
                     </tr>
                     </thead>
                     <tbody id="sortable">
-                    @foreach($data['slider'] as $slider)
-                        <tr id="item-{{$slider->id}}">
-                            <td class="sortable">{{$slider->slider_title}}</td>
-                            <td width="5"><a href="{{route('slider.edit',$slider->id)}}"><i class="fa fa-pencil-square"></i></a></td>
+                    @foreach($data['user'] as $user)
+                        <tr id="item-{{$user->id}}">
+                            <td class="sortable" width="150px;">
+                                <img src="/images/users/{{$user->user_file}}" width="100px;" alt="">
+                            </td>
+                            <td>{{$user->name}}</td>
+                            <td width="5"><a href="{{route('user.edit',$user->id)}}"><i class="fa fa-pencil-square"></i></a></td>
                             <td width="5">
-                                <a href="javascrip:void(0)"><i id="@php echo $slider->id @endphp" class="fa fa-trash-o"></i></a>
+                                <a href="javascrip:void(0)"><i id="@php echo $user->id @endphp" class="fa fa-trash-o"></i></a>
                             </td>
                         </tr>
                     @endforeach
@@ -41,7 +45,6 @@
 
     <script type="text/javascript">
         $(function(){
-
             $.ajaxSetup({
                 headers:{
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -56,7 +59,7 @@
                     $.ajax({
                         type: "POST",
                         data: data,
-                        url: "{{route('slider.Sortable')}}",
+                        url: "{{route('user.Sortable')}}",
                         success: function (msg) {
                             //console.log(msg);
                             if (msg) {
@@ -78,7 +81,7 @@
                 function (){
                     $.ajax({
                         type:'DELETE',
-                        url: 'slider/'+destroy_id,
+                        url: 'user/'+destroy_id,
                         success:function (msg){
                             if(msg){
                                 $('#item-'+destroy_id).remove();//veri silindiğinde ekrandanda syafayı yenilemeden kaldırılmasını sağlar

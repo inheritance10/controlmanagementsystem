@@ -4,35 +4,34 @@
     <section class="content-header">
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">Slider Düzenleme</h3>
+                <h3 class="box-title">User Düzenleme</h3>
                 <div align="right">
-                <a href="{{route('slider.index')}}" class="btn btn-warning" style="margin-left: 50px">Geri</a>
+                <a href="{{route('user.index')}}" class="btn btn-warning" style="margin-left: 50px">Geri</a>
                 </div>
             </div>
             <div class="box-body">
-                <form action="{{route('blog.update',$blog->id)}}" method="post" enctype="multipart/form-data"><!--dosya yükleme işlemi oludğu için multipart/form-data kullandık-->
+                <form action="{{route('user.update',$user->id)}}" method="post" enctype="multipart/form-data"><!--dosya yükleme işlemi oludğu için multipart/form-data kullandık-->
                     @csrf
                     @method('PUT')
                     <div class="form-group">
                         <label>Resim Seç</label>
                         <div class="row">
                             <div class="col-xs-12">
-                                <input type="file" name="blog_file" class="form-control">
+                                <input type="file" name="user_file" class="form-control">
                             </div>
                         </div>
                     </div>
 
-                    @isset($blog->blog_file)
+                    @isset($user->user_file)
                     <div class="form-group">
                         <div class="row">
                             <div class="col-xs-12">
-                                <img src="/images/blogs/{{$blog->blog_file}}" width="100px;" alt="">
-                            </div>
+i                            </div>
                         </div>
                     </div>
                     @endisset
 
-                    <input type="hidden" name="old_file" value="{{$blog->blog_file}}">
+                    <input type="hidden" name="old_file" value="{{$user->user_file}}">
 
 
 
@@ -40,7 +39,7 @@
                         <label>Başlık</label>
                         <div class="row">
                             <div class="col-xs-12">
-                                <input type="text" class="form-control" name="blog_title" value="{{$blog->blog_title}}">
+                                <input type="text" class="form-control" name="user_title" value="{{$user->user_title}}">
                             </div>
                         </div>
                     </div>
@@ -49,7 +48,16 @@
                         <label>Slug</label>
                         <div class="row">
                             <div class="col-xs-12">
-                                <input type="text" class="form-control" name="blog_slug" value="{{$blog->blog_slug}}">
+                                <input type="text" class="form-control" name="user_slug" value="{{$user->user_slug}}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Url</label>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <input type="text" class="form-control" name="user_url" value="{{$user->user_url}}">
                             </div>
                         </div>
                     </div>
@@ -58,7 +66,7 @@
                             <label>İçerik</label>
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <textarea class="form-control" id="editor1" name="blog_content">{{$blog->blog_content}}</textarea>
+                                    <textarea class="form-control" id="editor1" name="user_content">{{$user->user_content}}</textarea>
                                     <script>
                                         CKEDITOR.replace('editor1')
                                     </script>
@@ -70,11 +78,11 @@
                                 <label>Status</label>
                                 <div class="row">
                                     <div class="col-xs-12">
-                                        <select name="blog_status" class="form-control" id="">
-                                            @if($blog->blog_status == 1)
+                                        <select name="user_status" class="form-control" id="">
+                                            @if($user->user_status == 1)
                                                 <option selected value="1">Aktif</option>
                                                 <option value="0">Pasif</option>
-                                            @elseif($blog->blog_status == 0)
+                                            @elseif($user->user_status == 0)
                                                 <option selected value="0">Pasif</option>
                                                 <option value="1">Aktif</option>
                                             @endif

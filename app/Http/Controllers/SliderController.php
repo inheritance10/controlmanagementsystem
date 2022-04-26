@@ -45,6 +45,13 @@ class SliderController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'slider_title' => 'required',
+            'slider_content' => 'required',
+            'slider_url' => 'active_url'
+        ]);
+
         if(strlen($request->slider_slug)>3){
             $slug = Str::slug($request->slider_slug);
         }else{
@@ -53,8 +60,6 @@ class SliderController extends Controller
 
         if($request->hasFile('slider_file')){
             $request->validate([
-                'slider_title' => 'required',
-               'slider_content' => 'required',
                'slider_file' => 'required|image|mimes:jpg,jpeg,png|max:2048'
             ]);
             $file_name = uniqid().".".$request->slider_file->getClientOriginalExtension();
@@ -66,6 +71,7 @@ class SliderController extends Controller
         $slider = Sliders::create([
            'slider_title' => $request->slider_title,
            'slider_slug' => $slug,
+            'slider_url' => $request->slider_url,
            'slider_content' => $request->slider_content,
            'slider_status' => $request->slider_status,
             'slider_file' => $file_name
@@ -86,7 +92,7 @@ class SliderController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -110,6 +116,13 @@ class SliderController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $request->validate([
+            'slider_title' => 'required',
+            'slider_content' => 'required',
+            'slider_url' => 'active_url'
+        ]);
+
         if(strlen($request->slider_slug)>3){
             $slug = Str::slug($request->slider_slug);
         }else{
@@ -118,9 +131,7 @@ class SliderController extends Controller
 
         if($request->hasFile('slider_file')){
             $request->validate([
-               'slider_file' => 'required|image|mimes:jpg,jpeg,png|max:2048',
-                'slider_title' => 'required',
-                'slider_content' => 'required'
+               'slider_file' => 'required|image|mimes:jpg,jpeg,png|max:2048'
             ]);
             $file_name = uniqid().'.'.$request->slider_file->getClientOriginalExtension();
             $request->slider_file->move(public_path('/images/sliders'),$file_name);
@@ -128,6 +139,7 @@ class SliderController extends Controller
             $slider = Sliders::where('id',$id)->update([
                 'slider_title' => $request->slider_title,
                 'slider_slug' => $slug,
+                'slider_url' => $request->slider_url,
                 'slider_content' => $request->slider_content,
                 'slider_status' => $request->slider_status,
                 'slider_file' => $file_name
@@ -144,6 +156,7 @@ class SliderController extends Controller
             $slider = Sliders::where('id',$id)->update([
                 'slider_title' => $request->slider_title,
                 'slider_slug' => $slug,
+                'slider_url' => $request->slider_url,
                 'slider_content' => $request->slider_content,
                 'slider_status' => $request->slider_status
             ]);
