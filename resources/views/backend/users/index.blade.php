@@ -20,7 +20,6 @@
                         <th>Görsel</th>
                         <th>Ad Soyad</th>
                         <th>Kullanıcı Tipi</th>
-                        <th>Dosya Adı</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -32,8 +31,13 @@
                                 <img src="/images/users/{{$user->user_file}}" width="100px;" alt="">
                             </td>
                             <td>{{$user->name}}</td>
-                            <td>{{$user->role}}</td>
-                            <td>{{$user->user_file}}</td>
+                            <td>
+                            @if($user->role == 'user')
+                                Kullanıcı
+                            @elseif($user->role == 'admin')
+                                Admin
+                            @endif
+                            </td>
                             <td width="5"><a href="{{route('user.edit',$user->id)}}"><i class="fa fa-pencil-square"></i></a></td>
                             <td width="5">
                                 <a href="javascrip:void(0)"><i id="@php echo $user->id @endphp" class="fa fa-trash-o"></i></a>

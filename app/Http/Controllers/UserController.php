@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Testing\Fluent\Concerns\Has;
 use function Psy\bin;
 
 class UserController extends Controller
@@ -107,7 +108,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-
+         $user = User::where('id' , $id)->first();
+         return view('backend.users.edit',compact('user'));
     }
 
     /**
@@ -119,7 +121,90 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+          $request->validate([
+             'name' => 'required',
+             'email' => 'required|email',
+             'user_status' => 'required'
+          ]);
 
+          if($request->hasFile('user_file')){
+              $request->validate([
+                 'user_file' => 'required|image|mimes:jpg,jpeg,png|max:2048'
+              ]);
+
+              $file_name = uniqid().'.'.$request->user_file->getClientOriginalExtension();
+              $request->user_file->move(public_path('images/users'),$file_name);
+
+
+              if($request->user_status == '0'){
+                  $rol_type = 'user';
+              }else{
+                  $rol_type = 'admin';
+              }
+
+              if(strlen($request->password)>0){
+
+                  $request->validate([
+                      'password' => 'required|min:6'
+                  ]);
+
+                  $user = User::where('id' , $id)->update([
+                      'name' => $request->name,
+                      'email' => $request->email,
+                      'password' => Hash::make($request->password),
+                      'user_file' => $file_name,
+                      'user_status' => $request->user_status,
+                      'role' => $rol_type
+                  ]);
+              }else{
+                  $user = User::where('id' , $id)->update([
+                      'name' => $request->name,
+                      'email' => $request->email,
+                      'user_file' => $file_name,
+                      'user_status' => $request->user_status,
+                      'role' => $rol_type
+                  ]);
+              }
+
+              $path = 'images/users/'.$request->old_file;
+              if(file_exists($path)){
+                  @unlink(public_path($path));
+              }
+          }
+          else{
+              if($request->user_status == '0'){
+                  $rol_type = 'user';
+              }else{
+                  $rol_type = 'admin';
+              }
+
+              if(strlen($request->password)>0) {
+
+                  $request->validate([
+                      'password' => 'required|min:6'
+                  ]);
+
+                  $user = User::where('id' , $id)->update([
+                      'name' => $request->name,
+                      'email' => $request->email,
+                      'password' => Hash::make($request->password),
+                      'user_status' => $request->user_status,
+                      'role' => $rol_type
+                  ]);
+              }else{
+                  $user = User::where('id' , $id)->update([
+                      'name' => $request->name,
+                      'email' => $request->email,
+                      'user_status' => $request->user_status,
+                      'role' => $rol_type
+                  ]);
+              }
+          }
+
+          if($user){
+              return redirect(route('user.index'))->with('success','Düzenleme başarılı');
+          }
+          return back()->with('error','Düzenleme başarısız');
     }
 
     /**

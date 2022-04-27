@@ -173,21 +173,19 @@ desired effect
                 <li class="active"><a href="{{route('blog.index')}}"><i class="fa fa-paper-plane"></i> <span>Blog</span></a></li>
                 <li class="active"><a href="{{route('page.index')}}"><i class="fa fa-paper-plane"></i> <span>Page</span></a></li>
                 <li class="active"><a href="{{route('slider.index')}}"><i class="fa fa-paper-plane"></i> <span>Slider</span></a></li>
-                <li class="active"><a href="{{route('settings.index')}}"><i class="fa fa-cog"></i> <span>Ayarlar</span></a></li>
-                <li class="active"><a href="{{route('user.index')}}"><i class="fa fa-user"></i> <span>Yönetici</span></a></li>
 
 
-               {{-- <li class="treeview">
-                    <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
+              <li class="treeview active">
+                    <a href="#"><i class="fa fa-link"></i> <span>Yönetim</span>
                         <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="#">Link in level 2</a></li>
-                        <li><a href="#">Link in level 2</a></li>
+                        <li class="active"><a href="{{route('settings.index')}}"><i class="fa fa-cog"></i> <span>Ayarlar</span></a></li>
+                        <li class="active"><a href="{{route('user.index')}}"><i class="fa fa-user"></i> <span>Yönetici</span></a></li>
                     </ul>
-                </li>--}}
+                </li>
             </ul>
             <!-- /.sidebar-menu -->
         </section>

@@ -26,65 +26,50 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-xs-12">
-i                            </div>
+                                <img src="/images/users/{{$user->user_file}}" alt="">
+                            </div>
                         </div>
                     </div>
                     @endisset
-
                     <input type="hidden" name="old_file" value="{{$user->user_file}}">
 
-
-
                     <div class="form-group">
-                        <label>Başlık</label>
+                        <label>Ad Soyad</label>
                         <div class="row">
                             <div class="col-xs-12">
-                                <input type="text" class="form-control" name="user_title" value="{{$user->user_title}}">
+                                <input type="text" class="form-control" name="name" value="{{$user->name}}">
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label>Slug</label>
+                        <label>Email</label>
                         <div class="row">
                             <div class="col-xs-12">
-                                <input type="text" class="form-control" name="user_slug" value="{{$user->user_slug}}">
+                                <input type="email" class="form-control" name="email" value="{{$user->email}}">
                             </div>
                         </div>
                     </div>
-
                     <div class="form-group">
-                        <label>Url</label>
+                        <label>Password</label>
                         <div class="row">
                             <div class="col-xs-12">
-                                <input type="text" class="form-control" name="user_url" value="{{$user->user_url}}">
+                                <input type="password" class="form-control" name="password">
+                                <small>Şifreyi değişstirmek istemiyorsanız boş bırakın</small>
                             </div>
                         </div>
                     </div>
-
-                        <div class="form-group">
-                            <label>İçerik</label>
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <textarea class="form-control" id="editor1" name="user_content">{{$user->user_content}}</textarea>
-                                    <script>
-                                        CKEDITOR.replace('editor1')
-                                    </script>
-                                </div>
-                            </div>
-                        </div>
-
                             <div class="form-group">
-                                <label>Status</label>
+                                <label>Kullanıcı Tipi</label>
                                 <div class="row">
                                     <div class="col-xs-12">
                                         <select name="user_status" class="form-control" id="">
-                                            @if($user->user_status == 1)
-                                                <option selected value="1">Aktif</option>
-                                                <option value="0">Pasif</option>
-                                            @elseif($user->user_status == 0)
-                                                <option selected value="0">Pasif</option>
-                                                <option value="1">Aktif</option>
+                                            @if($user->role == 'admin')
+                                                <option selected value="1">Admin</option>
+                                                <option value="0">Kullanıcı</option>
+                                            @elseif($user->role == 'user')
+                                                <option selected value="0">Kullanıcı</option>
+                                                <option value="1">Admin</option>
                                             @endif
                                         </select>
                                     </div>
