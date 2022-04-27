@@ -16,65 +16,51 @@
                         <label>Resim Seç</label>
                         <div class="row">
                             <div class="col-xs-12">
-                                <input type="file" required name="user_file" class="form-control">
+                                <input type="file" name="user_file" class="form-control">
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label>Başlık</label>
+                        <label>Ad Soyad</label>
                         <div class="row">
                             <div class="col-xs-12">
-                                <input type="text" class="form-control" name="user_title" value="">
+                                <input type="text" class="form-control" name="name" value="">
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label>Slug</label>
+                        <label>Email</label>
                         <div class="row">
                             <div class="col-xs-12">
-                                <input type="text" class="form-control" name="user_slug" value="">
+                                <input type="email" class="form-control" name="email" value="">
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label>Url</label>
+                        <label>Password</label>
                         <div class="row">
                             <div class="col-xs-12">
-                                <input type="text" class="form-control" name="user_url" value="">
+                                <input type="password" class="form-control" name="password" value="">
                             </div>
                         </div>
                     </div>
-
-                        <div class="form-group">
-                            <label>İçerik</label>
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <textarea class="form-control" id="editor1" name="user_content"></textarea>
-                                    <script>
-                                        CKEDITOR.replace('editor1')
-                                    </script>
-                                </div>
+                    <div class="form-group">
+                        <label>Kullanıcı Tipi</label>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <select name="user_status" class="form-control" id="">
+                                    <option value="1">Admin</option>
+                                    <option value="0">Kullanıcı</option>
+                                </select>
                             </div>
                         </div>
-
-                            <div class="form-group">
-                                <label>Status</label>
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <select name="user_status" class="form-control" id="">
-                                            <option value="1">Aktif</option>
-                                            <option value="0">Pasif</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                            <div align="right">
-                                <button type="submit" class="btn btn-success">Ekle</button>
-                            </div>
-                        </div>
+                    </div>
+                    <div align="right">
+                        <button type="submit" class="btn btn-success">Ekle</button>
+                    </div>
                 </form>
             </div>
         </div>
