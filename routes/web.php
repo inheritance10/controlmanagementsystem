@@ -29,59 +29,71 @@ Route::get('/', function () {
 
 Route::prefix('admin')->group(function () {
 
-    Route::get('/',[DefaultController::class,'index'])
-        ->name('admin.index');
+    Route::get('/dashboard',[DefaultController::class,'index'])
+        ->name('admin.index')->middleware('admin');
 
-    Route::get('/login',[DefaultController::class,'login'])
+    Route::get('/',[DefaultController::class,'login'])
         ->name('admin.login');
 
+    Route::get('/logout',[DefaultController::class,'logout'])
+        ->name('admin.logout');
+
+    Route::post('/login',[DefaultController::class,'authenticate'])
+        ->name('admin.authenticate');
+
+
 
 });
 
+Route::middleware(['admin'])->group(function (){
+    Route::prefix('admin/settings')->group(function () {
 
-Route::prefix('admin/settings')->group(function () {
-
-    Route::get('/', [SettingsController::class, 'index'])
-        ->name('settings.index');
-    Route::post('/sortable', [SettingsController::class, 'sortable'])
-        ->name('settings.Sortable');
-    Route::get('/settings/delete/{id}', [SettingsController::class, 'Destroy']);
-    Route::get('/settings/edit/{id}', [SettingsController::class, 'edit'])
-        ->name('settings.edit');
-    Route::post('/update/{id}', [SettingsController::class, 'update'])
-        ->name('settings.update');
+        Route::get('/', [SettingsController::class, 'index'])
+            ->name('settings.index');
+        Route::post('/sortable', [SettingsController::class, 'sortable'])
+            ->name('settings.Sortable');
+        Route::get('/settings/delete/{id}', [SettingsController::class, 'Destroy']);
+        Route::get('/settings/edit/{id}', [SettingsController::class, 'edit'])
+            ->name('settings.edit');
+        Route::post('/update/{id}', [SettingsController::class, 'update'])
+            ->name('settings.update');
+    });
 });
 
 
-Route::prefix('admin')->group(function () {
-    //blog modülü
-    Route::resource('blog', BlogController::class);
 
-    Route::post('blog/sortable', [BlogController::class, 'sortable'])
-        ->name('blog.Sortable');
+Route::middleware(['admin'])->group(function (){
+    Route::prefix('admin')->group(function () {
+        //blog modülü
+        Route::resource('blog', BlogController::class);
+
+        Route::post('blog/sortable', [BlogController::class, 'sortable'])
+            ->name('blog.Sortable');
 
 
-    //Page modülü
+        //Page modülü
 
-    Route::resource('page', PageController::class);
+        Route::resource('page', PageController::class);
 
-    Route::post('page/sortable', [PageController::class, 'sortable'])
-        ->name('page.Sortable');
+        Route::post('page/sortable', [PageController::class, 'sortable'])
+            ->name('page.Sortable');
 
-    //Slider modülü
+        //Slider modülü
 
-    Route::resource('slider', SliderController::class);
+        Route::resource('slider', SliderController::class);
 
-    Route::post('slider/sortable', [SliderController::class, 'sortable'])
-        ->name('slider.Sortable');
+        Route::post('slider/sortable', [SliderController::class, 'sortable'])
+            ->name('slider.Sortable');
 
-    //Admin modülü
+        //Admin modülü
 
-    Route::resource('user', UserController::class);
+        Route::resource('user', UserController::class);
 
-    Route::post('user/sortable', [UserController::class, 'sortable'])
-        ->name('user.Sortable');
+        Route::post('user/sortable', [UserController::class, 'sortable'])
+            ->name('user.Sortable');
+    });
 });
+
 
 
 

@@ -116,7 +116,7 @@ desired effect
                             <!-- The user image in the navbar-->
                             <img src="/backend/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                            <span class="hidden-xs">Alexander Pierce</span>
+                            <span class="hidden-xs">{{\Illuminate\Support\Facades\Auth::user()->name}}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
@@ -124,7 +124,7 @@ desired effect
                                 <img src="/backend/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                                 <p>
-                                    Alexander Pierce - Web Developer
+                                    {{\Illuminate\Support\Facades\Auth::user()->name}} - Web Developer
                                 </p>
                             </li>
                             <!-- Menu Body -->
@@ -134,7 +134,7 @@ desired effect
                                     <a href="#" class="btn btn-default btn-flat">Profil Düzenle</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="#" class="btn btn-default btn-flat">Çıkış</a>
+                                    <a href="{{route('admin.logout')}}" class="btn btn-default btn-flat">Çıkış</a>
                                 </div>
                             </li>
                         </ul>
@@ -156,7 +156,7 @@ desired effect
                     <img src="/backend/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
-                    <p>Alexander Pierce</p>
+                    <p>{{\Illuminate\Support\Facades\Auth::user()->name}}</p>
                     <!-- Status -->
                 </div>
             </div>

@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     <style type="text/css">
         .login-page{
-            background: linear-gradient(360deg, rgba(2,0,20,1) 0%, rgba(0,0,5) 19%, rgba(0,0,0,0) 100%);
+            background: linear-gradient(360deg, rgba(2,0,20,1) 0%, rgba(0,0,0,5) 19%, rgba(0,0,0,0) 100%);
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
@@ -50,20 +50,31 @@
     <div class="login-box-body">
         <p class="login-box-msg">Email ve Şifrenizi Giriniz</p>
 
-        <form action="" method="post">
+        @if(Session::has('error'))
+            <div class="alert alert-danger">
+                {{session('error')}}
+            </div>
+        @elseif(Session::has('success'))
+            <div class="alert alert-info">
+                {{session('success')}}
+            </div>
+        @endif
+
+        <form action="{{route('admin.authenticate')}}" method="post">
+            @csrf
             <div class="form-group has-feedback">
-                <input type="email" class="form-control" name="email" placeholder="Email">
+                <input type="email"required class="form-control" name="email" placeholder="Email" value="{{old('email')}}">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="password" class="form-control" name="password" placeholder="Şifre">
+                <input type="password" required class="form-control" name="password" placeholder="Şifre">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="row">
                 <div class="col-xs-8">
                     <div class="checkbox icheck">
                         <label>
-                            <input type="checkbox"> Beni Hatırla
+                            <input type="checkbox" name="remember_me" {{old('remember_me') ? 'checked':''}}> Beni Hatırla
                         </label>
                     </div>
                 </div>
