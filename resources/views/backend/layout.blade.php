@@ -114,14 +114,14 @@ desired effect
                         <!-- Menu Toggle Button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <!-- The user image in the navbar-->
-                            <img src="/backend/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                            <img src="/images/users/{{\Illuminate\Support\Facades\Auth::user()->user_file}}" class="user-image" alt="User Image">
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
                             <span class="hidden-xs">{{\Illuminate\Support\Facades\Auth::user()->name}}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
                             <li class="user-header">
-                                <img src="/backend/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                <img src="/images/users/{{\Illuminate\Support\Facades\Auth::user()->user_file}}" class="img-circle" alt="User Image">
 
                                 <p>
                                     {{\Illuminate\Support\Facades\Auth::user()->name}} - Web Developer
@@ -131,7 +131,7 @@ desired effect
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="#" class="btn btn-default btn-flat">Profil Düzenle</a>
+                                    <a href="{{route('user.edit',\Illuminate\Support\Facades\Auth::user()->id)}}" class="btn btn-default btn-flat">Profil Düzenle</a>
                                 </div>
                                 <div class="pull-right">
                                     <a href="{{route('admin.logout')}}" class="btn btn-default btn-flat">Çıkış</a>
@@ -153,10 +153,11 @@ desired effect
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="/backend/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                    <img src="/images/users/{{\Illuminate\Support\Facades\Auth::user()->user_file}}" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
                     <p>{{\Illuminate\Support\Facades\Auth::user()->name}}</p>
+                    <p>Yönetici</p>
                     <!-- Status -->
                 </div>
             </div>
