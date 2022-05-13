@@ -40,7 +40,6 @@ Route::prefix('admin')->group(function () {
 
     Route::post('/login',[DefaultController::class,'authenticate'])
         ->name('admin.authenticate');
-
 });
 
 Route::middleware(['admin'])->group(function (){

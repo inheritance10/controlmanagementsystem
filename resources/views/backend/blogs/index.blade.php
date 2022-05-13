@@ -28,7 +28,7 @@
                             <td class="sortable">{{$blog->blog_title}}</td>
                             <td width="5"><a href="{{route('blog.edit',$blog->id)}}"><i class="fa fa-pencil-square"></i></a></td>
                             <td width="5">
-                                <a href="javascrip:void(0)"><i id="@php echo $blog->id @endphp" class="fa fa-trash-o"></i></a>
+                                <a href="javascript:void(0)"><i id="@php echo $blog->id @endphp" class="fa fa-trash-o"></i></a>
                             </td>
                         </tr>
                     @endforeach
