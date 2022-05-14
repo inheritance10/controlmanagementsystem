@@ -9,22 +9,26 @@ use App\Http\Controllers\SliderController;
 use App\Http\Controllers\UserController;
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+
 
 require __DIR__.'/auth.php';
 
 
+Route::namespace('Frontend')->group(function (){
+    Route::get('/',[\App\Http\Controllers\Frontend\DefaultController::class,'index'])
+    ->name('home.index');
 
+    //FrontEnd Blog Route
+    Route::get('/blog',[\App\Http\Controllers\Frontend\BlogController::class,'index'])
+        ->name('blogs.index');
 
-Route::get('/', function () {
-    return view('welcome');
+    Route::get('/blog/{slug}',[\App\Http\Controllers\Frontend\BlogController::class,'detail'])
+        ->name('blogs.detail');
 });
+
+
+
 
 
 Route::prefix('admin')->group(function () {
