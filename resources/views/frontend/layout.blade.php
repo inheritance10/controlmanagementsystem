@@ -5,7 +5,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
+    <meta name="description" content="{{$description}}">
     <meta name="author" content="">
 
     <title>@yield('title')</title>
@@ -35,6 +35,12 @@
                     <a class="nav-link" href="{{route('blogs.index')}}">Projelerim</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="/page/{{$slug}}">Sayfalar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('contact.detail')}}">Bana Ulaşın</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" target="_blank" href="https://github.com/inheritance10">Github Hesabım</a>
                 </li>
             </ul>
@@ -47,7 +53,7 @@
 <!-- Footer -->
 <footer class="py-5 bg-dark">
     <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+        <p class="m-0 text-center text-white">{{$footer}}</p>
     </div>
     <!-- /.container -->
 </footer>

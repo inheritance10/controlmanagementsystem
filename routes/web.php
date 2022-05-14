@@ -25,6 +25,18 @@ Route::namespace('Frontend')->group(function (){
 
     Route::get('/blog/{slug}',[\App\Http\Controllers\Frontend\BlogController::class,'detail'])
         ->name('blogs.detail');
+
+    //Page Route
+    Route::get('/page/{slug}',[\App\Http\Controllers\Frontend\PageController::class,'detail'])
+    ->name('page.detail');
+
+    //Contact Route
+
+    Route::get('/contact',[\App\Http\Controllers\Frontend\DefaultController::class,'contact'])
+        ->name('contact.detail');
+
+
+
 });
 
 

@@ -14,4 +14,8 @@ class DefaultController extends Controller
         $data['slider'] = Sliders::all()->sortby('slider_must');
         return view('frontend.default.index',compact('data'));
     }
+
+    public function contact(){
+        return view('frontend.default.contact');
+    }
 }
