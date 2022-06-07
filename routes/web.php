@@ -15,10 +15,15 @@ use App\Http\Controllers\UserController;
 require __DIR__.'/auth.php';
 
 
-Route::namespace('Frontend')->group(function (){
-    Route::get('/',[\App\Http\Controllers\Frontend\DefaultController::class,'index'])
-    ->name('home.index');
 
+
+Route::namespace('Frontend')->group(function (){
+    /*Route::get('/',[\App\Http\Controllers\Frontend\DefaultController::class,'index'])
+    ->name('home.index');*/
+
+    Route::get('layout',[\App\Http\Controllers\Frontend\HomeController::class,'index'])->name('home.index');
+    Route::get('/project/{slug}',[\App\Http\Controllers\Frontend\HomeController::class,'detail'])
+        ->name('project.detail');
     //FrontEnd Blog Route
     Route::get('/blog',[\App\Http\Controllers\Frontend\BlogController::class,'index'])
         ->name('blogs.index');

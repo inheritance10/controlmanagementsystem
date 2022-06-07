@@ -154,7 +154,8 @@ class UserController extends Controller
                       'password' => Hash::make($request->password),
                       'user_file' => $file_name,
                       'user_status' => $request->user_status,
-                      'role' => $rol_type
+                      'role' => $rol_type,
+                      'about' => $request->about
                   ]);
               }else{
                   $user = User::where('id' , $id)->update([
@@ -162,7 +163,8 @@ class UserController extends Controller
                       'email' => $request->email,
                       'user_file' => $file_name,
                       'user_status' => $request->user_status,
-                      'role' => $rol_type
+                      'role' => $rol_type,
+                      'about' => $request->about
                   ]);
               }
 
@@ -189,14 +191,16 @@ class UserController extends Controller
                       'email' => $request->email,
                       'password' => Hash::make($request->password),
                       'user_status' => $request->user_status,
-                      'role' => $rol_type
+                      'role' => $rol_type,
+                      'about' => $request->about
                   ]);
               }else{
                   $user = User::where('id' , $id)->update([
                       'name' => $request->name,
                       'email' => $request->email,
                       'user_status' => $request->user_status,
-                      'role' => $rol_type
+                      'role' => $rol_type,
+                      'about' => $request->about
                   ]);
               }
           }

@@ -59,6 +59,15 @@
                             </div>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label>Hakkımda</label>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <textarea cols="120" rows="10" name="about">{{$user->about}}</textarea>
+                            </div>
+                        </div>
+                    </div>
+
                             <div class="form-group">
                                 <label>Kullanıcı Tipi</label>
                                 <div class="row">
